@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Title>VRCWLocalLoader</Title>
+        <Authors>Myrkur</Authors>
+        <Description>Loads a VRChat World AssetBundle into a local instance for exploring old long lost worlds.</Description>
+        <PackageTags>VRChat</PackageTags>
+        <AssemblyVersion>V1.0</AssemblyVersion>
+        <FileVersion>V1.0</FileVersion>
+    </PropertyGroup>
+
+</Project>
