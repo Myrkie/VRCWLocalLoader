@@ -11,6 +11,8 @@
         <PackageTags>VRChat</PackageTags>
         <AssemblyVersion>V1.0</AssemblyVersion>
         <FileVersion>V1.0</FileVersion>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
 </Project>

@@ -12,6 +12,13 @@ class Program
         if (args.Length > 0)
         {
             var vrcw = "--url=create?roomId=" + RandomNumbers(10) + "&hidden=true&name=BuildAndRun&url=file:///" + HttpUtility.UrlEncode(args[0]);
+            bool extension = vrcw.IndexOf("Yes", StringComparison.OrdinalIgnoreCase) >= 0;
+            if (extension)
+            {
+                Console.WriteLine("wrong file extension provided, please provide a .vrcw");
+                Thread.Sleep(5000);
+                Environment.Exit(0);
+            }
             
             Console.WriteLine("Starting Path: " + vrcw);
 
@@ -33,8 +40,8 @@ class Program
             Console.WriteLine("would you like to start in VR?: Yes/No");
             
             string userinput = Console.ReadLine();
-            bool result = userinput.IndexOf("Yes", StringComparison.OrdinalIgnoreCase) >= 0;
-            if (result)
+            bool userresult = userinput.IndexOf("Yes", StringComparison.OrdinalIgnoreCase) >= 0;
+            if (userresult)
             {
                 Process.Start(process, argumentVr);
                 Console.Write("Task Complete Starting VR Exiting......");
@@ -52,7 +59,7 @@ class Program
         else
         {
             Console.Write("this is a drag drop process, drag and drop your VRCW onto me :)\nclosing now");
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             
             Environment.Exit(0);
         }
