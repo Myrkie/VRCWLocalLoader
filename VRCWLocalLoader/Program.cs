@@ -12,8 +12,8 @@ class Program
         if (args.Length > 0)
         {
             var vrcw = "--url=create?roomId=" + RandomNumbers(10) + "&hidden=true&name=BuildAndRun&url=file:///" + HttpUtility.UrlEncode(args[0]);
-            bool extension = vrcw.IndexOf("Yes", StringComparison.OrdinalIgnoreCase) >= 0;
-            if (extension)
+            bool extension = vrcw.IndexOf("VRCW", StringComparison.OrdinalIgnoreCase) >= 0;
+            if (!extension)
             {
                 Console.WriteLine("wrong file extension provided, please provide a .vrcw");
                 Thread.Sleep(5000);
