@@ -9,8 +9,8 @@
         <Authors>Myrkur</Authors>
         <Description>Loads a VRChat World AssetBundle into a local instance for exploring old long lost worlds.</Description>
         <PackageTags>VRChat</PackageTags>
-        <AssemblyVersion>V1.0</AssemblyVersion>
-        <FileVersion>V1.0</FileVersion>
+        <AssemblyVersion>2.0</AssemblyVersion>
+        <FileVersion>2.0</FileVersion>
         <Configurations>Debug;Release</Configurations>
         <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
