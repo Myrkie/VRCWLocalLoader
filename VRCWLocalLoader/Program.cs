@@ -1,19 +1,20 @@
 ﻿using System.Diagnostics;
 using System.Text;
 using System.Web;
+using System.Reflection;
 using Microsoft.Win32;
 
-class Program
+class VRCWLocalLoader
 {
     private static string novr = "--no-vr";
     
     static void Main(string[] args)
     {
+        Console.Title = (typeof(VRCWLocalLoader).Assembly.GetName().Version).ToString();
         if (args.Length > 0)
         {
             var vrcw = "--url=create?roomId=" + RandomNumbers(10) + "&hidden=true&name=BuildAndRun&url=file:///" + HttpUtility.UrlEncode(args[0]);
-            bool extension = vrcw.IndexOf("VRCW", StringComparison.OrdinalIgnoreCase) >= 0;
-            if (!extension)
+            if (!IgnoreCase(vrcw, "VRCW"))
             {
                 Console.WriteLine("wrong file extension provided, please provide a .vrcw");
                 Thread.Sleep(5000);
@@ -40,20 +41,21 @@ class Program
             Console.WriteLine("would you like to start in VR?: Yes/No");
             
             string userinput = Console.ReadLine();
-            bool userresult = userinput.IndexOf("Yes", StringComparison.OrdinalIgnoreCase) >= 0;
-            if (userresult)
+
+            switch (IgnoreCase(userinput, "Yes"))
             {
-                Process.Start(process, argumentVr);
-                Console.Write("Task Complete Starting VR Exiting......");
-                Thread.Sleep(5000);
-                Environment.Exit(0);
-            }
-            else
-            {
-                Process.Start(process, argumentNoVr);
-                Console.Write("Task Complete Starting Desktop Exiting......");
-                Thread.Sleep(5000);
-                Environment.Exit(0);
+                case true:
+                    Process.Start(process, argumentVr);
+                    Console.Write("Task Complete Starting VR and Exiting......");
+                    Thread.Sleep(5000);
+                    Environment.Exit(0);
+                    break;
+                case false:
+                    Process.Start(process, argumentNoVr);
+                    Console.Write("Task Complete Starting Desktop and Exiting......");
+                    Thread.Sleep(5000);
+                    Environment.Exit(0);
+                    break;
             }
         }
         else
@@ -63,6 +65,13 @@ class Program
             
             Environment.Exit(0);
         }
+    }
+
+    private static bool IgnoreCase(string input, string word)
+    {
+        bool boolean = input.Contains(word, StringComparison.CurrentCultureIgnoreCase);
+
+        return boolean;
     }
     
     private static string RandomNumbers(int Length)
