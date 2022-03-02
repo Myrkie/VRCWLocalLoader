@@ -13,15 +13,15 @@ class VRCWLocalLoader
         Console.Title = (typeof(VRCWLocalLoader).Assembly.GetName().Version).ToString();
         if (args.Length > 0)
         {
-            var vrcw = "--url=create?roomId=" + RandomNumbers(10) + "&hidden=true&name=BuildAndRun&url=file:///" + HttpUtility.UrlEncode(args[0]);
-            if (!IgnoreCase(vrcw, "VRCW"))
+            var vrcwpath = "--url=create?roomId=" + RandomNumbers(10) + "&hidden=true&name=BuildAndRun&url=file:///" + HttpUtility.UrlEncode(args[0]);
+            if (!IgnoreCase(vrcwpath, "VRCW"))
             {
                 Console.WriteLine("wrong file extension provided, please provide a .vrcw");
                 Thread.Sleep(5000);
                 Environment.Exit(0);
             }
             
-            Console.WriteLine("Starting with Path: " + vrcw);
+            Console.WriteLine("Starting with Path: " + vrcwpath);
 
             #region GetVrchatDIR
 
@@ -33,8 +33,8 @@ class VRCWLocalLoader
 
             #region CreatedProcessArugments
 
-            var argumentVr = vrcw;
-            var argumentNoVr = vrcw + $" {novr}";
+            var argumentVr = vrcwpath;
+            var argumentNoVr = vrcwpath + $" {novr}";
 
             #endregion
             
