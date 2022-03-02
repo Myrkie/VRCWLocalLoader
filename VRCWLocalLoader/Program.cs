@@ -20,13 +20,13 @@ class Program
                 Environment.Exit(0);
             }
             
-            Console.WriteLine("Starting Path: " + vrcw);
+            Console.WriteLine("Starting with Path: " + vrcw);
 
             #region GetVrchatDIR
 
-            RegistryKey? regKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall");
-            var vrcpath = FindByDisplayName(regKey, "VRChat");
-            var process = vrcpath + "\\vrchat.exe";
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\VRChat");
+            var vrcpath = registryKey.GetValue(null,"VRChat");
+            var process = vrcpath + "\\VRChat.exe";
             
             #endregion
 
@@ -63,24 +63,6 @@ class Program
             
             Environment.Exit(0);
         }
-    }
-    
-    private static string FindByDisplayName(RegistryKey? parentKey, string name)
-    {
-        string[] nameList = parentKey.GetSubKeyNames();
-        for (int i = 0; i < nameList.Length; i++)
-        {
-            RegistryKey regKey =  parentKey.OpenSubKey(nameList[i]);
-            try
-            {
-                if (regKey.GetValue("DisplayName").ToString() == name)
-                {
-                    return regKey.GetValue("InstallLocation").ToString();
-                }
-            }
-            catch { }
-        }
-        return "";
     }
     
     private static string RandomNumbers(int Length)
